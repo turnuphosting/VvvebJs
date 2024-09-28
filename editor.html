@@ -21,15 +21,15 @@
 					
 					<div class="btn-group float-start" role="group">
 					  <button class="btn btn-light" title="Toggle file manager" id="toggle-file-manager-btn" data-vvveb-action="toggleFileManager" data-bs-toggle="button" aria-pressed="false">
-						  <img src="libs/builder/icons/file-manager-layout.svg" width="20" height="20" alt="" role="presentation">
+						  <img src="libs/builder/icons/file-manager-layout.svg" width="18" height="18" alt="" role="presentation">
 					  </button>
 
 					  <button class="btn btn-light" title="Toggle left column" id="toggle-left-column-btn" data-vvveb-action="toggleLeftColumn" data-bs-toggle="button" aria-pressed="false">
-						  <img src="libs/builder/icons/left-column-layout.svg" width="20" height="20" alt="" role="presentation">
+						  <img src="libs/builder/icons/left-column-layout.svg" width="18" height="18" alt="" role="presentation">
 					  </button>
 					  
 					  <button class="btn btn-light" title="Toggle right column" id="toggle-right-column-btn" data-vvveb-action="toggleRightColumn" data-bs-toggle="button" aria-pressed="false">
-						  <img src="libs/builder/icons/right-column-layout.svg" width="20" height="20" alt="" role="presentation">
+						  <img src="libs/builder/icons/right-column-layout.svg" width="18" height="18" alt="" role="presentation">
 					  </button>
 					</div>
 					
@@ -45,7 +45,7 @@
 										
 					
 					<div class="btn-group me-3" role="group">
-					  <button class="btn btn-light" title="Designer Mode (Free component dragging)" id="designer-mode-btn" data-bs-toggle="button" aria-pressed="false" data-vvveb-action="setDesignerMode">
+					  <button class="btn btn-light" title="Designer Mode (Free dragging)" id="designer-mode-btn" data-bs-toggle="button" aria-pressed="false" data-vvveb-action="setDesignerMode">
 						  <i class="la la-hand-rock"></i>
 					  </button>
 
@@ -57,6 +57,10 @@
 						  <i class="icon-expand-outline"></i>
 					  </button>
 
+					  <button class="btn btn-light active" title="Toggle navigator" id="toggle-tree-list" data-bs-toggle="button" data-vvveb-action="toggleTreeList" aria-pressed="true">
+						  <i class="icon-layers-outline"></i>
+					  </button>
+
 					  <button class="btn btn-light" title="Download" id="download-btn" data-vvveb-action="download" data-v-download="index.html">
 						  <i class="la la-download"></i>
 					  </button>
@@ -64,32 +68,31 @@
 					</div>
 					
 								
-					<div class="btn-group me-3 float-end" role="group">
-					  <button class="btn btn-primary btn-icon" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="saveAjax" data-vvveb-url="save.php" data-v-vvveb-shortcut="ctrl+e">
+					<div class="btn-group me-2 float-end" role="group">
+					  <button class="btn btn-primary btn-sm btn-icon save-btn" title="Export (Ctrl + E)" id="save-btn" data-vvveb-action="saveAjax" data-vvveb-url="save.php" data-v-vvveb-shortcut="ctrl+e">
 
 						<span class="loading d-none">
-						<i class="la la-save"></i>
+						<i class="icon-save-outline"></i>
 						  <span class="spinner-border spinner-border-sm align-middle" role="status" aria-hidden="true">
 						  </span>
 						  <span>Saving </span> ... </span>
 
 						<span class="button-text">
-						  <i class="la la-save"></i> <span>Save page</span>
+						  <i class="icon-save-outline"></i> <span>Save page</span>
 						</span>	
 
 					  </button>
 					</div>	
 
-
 					  <div class="float-end me-3">
 
 					    <button class="btn btn-light border-0 btn-sm btn-dark-mode" data-vvveb-action="darkMode">
 							<!-- i class="la la-adjust la-lg"></i -->
-							<i class="la la-sun la-lg"></i>
+							<i class="la la-sun"></i>
 						</button>
 						
-					    <a href="#" class="btn btn-outline-primary border-0 btn-sm btn-preview-url" target="blank">
-							View page <i class="la la-external-link-alt la-lg"></i>
+					    <a href="#" class="btn btn-light btn-sm btn-preview-url" target="blank" title="View page">
+							<i class="la la-external-link-alt"></i>
 						</a>
 
 					    <div class="btn-group responsive-btns" role="group">
@@ -106,7 +109,11 @@
 					  <button id="desktop-view"  data-view="" class="btn btn-light"  title="Desktop view" data-vvveb-action="viewport">
 						  <i class="la la-laptop"></i>
 					  </button>
+			
+					<div class="percent">
+					   <input type="number" id="zoom" value="100" step="10" min="10" max="100" class="form-control" data-vvveb-action="zoomChange" data-vvveb-on="change">
 
+					</div>
 					</div>
 										
 				</div>	
@@ -115,14 +122,15 @@
 
 
 				<div id="left-panel">
-
+					  <div>
 					  <div id="filemanager"> 
 							<div class="header">
 								<span class="text-secondary"><i class="la la-file la-lg"></i> Pages</span>
 
-									<div class="btn-group responsive-btns me-1 float-end" role="group">
+									<div class="btn-group responsive-btns float-end" role="group">
 									  <button class="btn btn-outline-primary btn-sm  btn-add" title="New file" id="new-file-btn" data-vvveb-action="newPage" data-vvveb-shortcut="">
-										   <span>New page</span> <i class="icon-duplicate-outline"></i>
+									<!-- <span>Add new</span> -->
+									<i class="icon-add"></i>
 									  </button>
 									  
 									  <!--  &ensp;
@@ -161,7 +169,7 @@
 							  <!-- li class="nav-item sections-tab">
 								<a class="nav-link" id="sections-tab" data-bs-toggle="tab" href="#sections" role="tab" aria-controls="sections" aria-selected="false" title="Sections"><img src="../../../js/vvvebjs/icons/list_group.svg" width="24" height="23"> <div><small>Sections</small></div></a>
 							  </li -->
-							  <li class="nav-item component-properties-tab" style="display:none">
+							  <li class="nav-item component-properties-tab d-none">
 								<a class="nav-link" id="properties-tab" data-bs-toggle="tab" href="#properties" role="tab" aria-controls="properties" aria-selected="false" title="Properties">
 									<i class="icon-settings-outline"></i>
 									<!-- img src="../../../js/vvvebjs/icons/filters.svg" height="23"--> 
@@ -169,8 +177,8 @@
 								</a>
 							  </li>
 							  <li class="nav-item component-configuration-tab">
-								<a class="nav-link" id="configuration-tab" data-bs-toggle="tab" href="#configuration" role="tab" aria-controls="configuration" aria-selected="false" title="Configuration">
-									<i class="la la-tools"></i>
+								<a class="nav-link" id="configuration-tab" data-bs-toggle="tab" href="#configuration" role="tab" aria-controls="configuration" aria-selected="false" title="Styles">
+									<i class="icon-color-wand-outline"></i>
 									<!-- img src="../../../js/vvvebjs/icons/filters.svg" height="23"--> 
 									<!-- div><small>Properties</small></div -->
 								</a>
@@ -183,14 +191,14 @@
 							  <div class="tab-pane show active sections" id="sections" role="tabpanel" aria-labelledby="sections-tab">
 								  
 
-										<ul class="nav nav-tabs nav-fill sections-tabs" id="properties-tabs" role="tablist">
+										<ul class="nav nav-tabs nav-fill nav-underline  sections-tabs" id="sections-tabs" role="tablist">
 										  <li class="nav-item content-tab">
 											<a class="nav-link active" data-bs-toggle="tab" href="#sections-new-tab" role="tab" aria-controls="components" aria-selected="false">
 												<i class="icon-albums-outline"></i> <div><span>Sections</span></div></a>
 										  </li>
 										  <li class="nav-item style-tab">
 											<a class="nav-link" data-bs-toggle="tab" href="#sections-list" role="tab" aria-controls="sections" aria-selected="true">
-												 <i class="icon-document-text-outline"></i></i> <div><span>Page Sections</span></div></a>
+												 <i class="icon-document-text-outline"></i><div><span>Page Sections</span></div></a>
 										  </li>
 										</ul>
 								
@@ -293,7 +301,7 @@
 								<div class="tab-pane show" id="components-tabs" role="tabpanel" aria-labelledby="components-tab">
 								  
 								  
-										<ul class="nav nav-tabs nav-fill sections-tabs" role="tablist">
+										<ul class="nav nav-tabs nav-fill nav-underline  sections-tabs" role="tablist">
 										  <li class="nav-item components-tab">
 											<a class="nav-link active" data-bs-toggle="tab" href="#components" role="tab" aria-controls="components" aria-selected="true">
 												<i class="icon-cube-outline"></i> <div><span>Components</span></div></a>
@@ -364,23 +372,23 @@
 									<div class="component-properties-sidepane">
 										<div>
 											<div class="component-properties">
-												<ul class="nav nav-tabs nav-fill" id="properties-tabs" role="tablist">
+												<ul class="nav nav-tabs nav-fill nav-underline" id="properties-tabs" role="tablist">
 													  <li class="nav-item content-tab">
 														<a class="nav-link content-tab active" data-bs-toggle="tab" href="#content-left-panel-tab" role="tab" aria-controls="components" aria-selected="true">
-															<i class="icon-albums-outline"></i> <div><span>Content</span></div>
+															<i class="icon-albums-outline"></i> <span>Content</span>
 														</a>
 													  </li>
 													  <li class="nav-item style-tab">
 														<a class="nav-link" data-bs-toggle="tab" href="#style-left-panel-tab" role="tab" aria-controls="style" aria-selected="false">
-															<i class="icon-color-fill-outline"></i> <div><span>Style</span></div></a>
+															<i class="icon-color-fill-outline"></i> <span>Style</span></a>
 													  </li>
 													  <li class="nav-item advanced-tab">
 														<a class="nav-link" data-bs-toggle="tab" href="#advanced-left-panel-tab" role="tab" aria-controls="advanced" aria-selected="false">
-															<i class="icon-settings-outline"></i> <div><span>Advanced</span></div></a>
+															<i class="icon-settings-outline"></i> <span>Advanced</span></a>
 													  </li>
 													</ul>
 											
-													<div class="tab-content">
+													<div class="tab-content" data-offset="20">
 														 <div class="tab-pane show active" id="content-left-panel-tab" data-section="content" role="tabpanel" aria-labelledby="content-tab">
 															<div class="alert alert-dismissible fade show alert-light m-3" role="alert" style="">		  
 																<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>		  
@@ -389,6 +397,16 @@
 														</div>
 														
 														 <div class="tab-pane show" id="style-left-panel-tab" data-section="style" role="tabpanel" aria-labelledby="style-tab">
+															  <div class="border-bottom pb-2 px-2">
+																<div class="justify-content-end d-flex">
+																  <select class="form-select w-50" data-vvveb-action="setState" data-vvveb-on="change">
+																	<option value=""> - State - </option>
+																	<option value="hover">hover</option>
+																	<option value="active">active</option>
+																	<option value="nth-of-type(2n)">nth-of-type(2n)</option>
+																  </select>
+																</div>
+															  </div>
 														 </div>
 														
 														 <div class="tab-pane show" id="advanced-left-panel-tab" data-section="advanced"  role="tabpanel" aria-labelledby="advanced-tab">
@@ -399,56 +417,60 @@
 									</div>
 							  </div>
 							
-								<div class="tab-pane" id="configuration" role="tabpanel" aria-labelledby="configuration-tab">
-									
-									<div class="drag-elements-sidepane sidepane">
-									<div>
-										<div class="component-properties">
-											<!-- color palette -->
-											<!--
-											<label class="header" data-header="default" for="header_pallette"><span>Global styles</span>
-												<div class="header-arrow"></div>
-											</label> -->
-											<input class="header_check" type="checkbox" checked id="header_pallette">
-											<div class="tab-pane section px-0" data-section="content">
+							<div class="tab-pane" id="configuration" role="tabpanel" aria-labelledby="configuration-tab">
+								
+									<ul class="nav nav-tabs nav-fill nav-underline sections-tabs" id="vars-tabs" role="tablist">
+									  <li class="nav-item vars-tab">
+										<a class="nav-link active" data-bs-toggle="tab" href="#vars-tab" role="tab" aria-controls="components" aria-selected="false">
+											<i class="icon-brush-outline"></i> <div><span>Variables</span></div></a>
+									  </li>
+									  <li class="nav-item css-tab">
+										<a class="nav-link" data-bs-toggle="tab" href="#css-tab" role="tab" aria-controls="css" aria-selected="true">
+											<i class="icon-code-slash-outline"></i> <div><span>Css</span></div></a>
+									  </li>
+									</ul>
+							
+									<div class="tab-content">
 
-												
-												<div class="mb-3  col-sm-6  inline " data-key="background-color">      <label class=" form-label" for="input-model">Background Color</label>      <div class=" input"><div>   <input name="background-color" type="color" pattern="#[a-f0-9]{6}" class="form-control form-control-color">  </div></div>     </div>
-												
-												
-												
-												<div class="mb-3  col-sm-6  inline " data-key="background-color">      <label class=" form-label" for="input-model">Background Color</label>      <div class=" input"><div>   <input name="background-color" type="color" pattern="#[a-f0-9]{6}" class="form-control form-control-color">  </div></div>     </div>
-												
-												
-												
-												
+										 <div class="tab-pane show active" id="vars-tab" data-section="vars" role="tabpanel" aria-labelledby="vars-tab">
+								
+													<div class="drag-elements-sidepane sidepane">
+													<div data-offset="80">
+														<div class="component-properties">
+								<!-- color palette -->
+															<!--
+															<label class="header" data-header="default" for="header_pallette"><span>Global styles</span>
+									<div class="header-arrow"></div>
+															</label> -->
+															<input class="header_check" type="checkbox" checked id="header_pallette">
+															<div class="tab-pane section px-0" data-section="content">
+										
+															</div>
+									
+													</div>
+												</div>
 											</div>
-												
-												
-											<!-- typography -->	
-											<!-- 
-											<label class="header" data-header="element_header" for="header_element_typography"><span>Typography</span>
-												<div class="header-arrow"></div>
-											</label>
-											
-											<input class="header_check" type="checkbox" checked="true" id="header_element_typography">
-											<div class="section" data-section="element_header">
-											
-											</div> 
-											-->
-									
+										</div>
+										
+										 <div class="tab-pane" id="css-tab" data-section="css" role="tabpanel" aria-labelledby="css-tab">
+											<div class="drag-elements-sidepane sidepane">
+											<div data-offset="80">
+												<textarea id="css-editor" class="form-control" rows="24"></textarea>
+											</div>
+											</div>
+										 </div>
+										
 									</div>
-								</div>
-								</div>
-									
-									
-								</div><!-- end configuration tab -->
+								
+							
+							</div><!-- end configuration tab -->
 							
 							</div>
 						</div>							
 					
 					  </div>
 				</div>	
+     			   </div>
 
 
 				<div id="canvas">
@@ -531,9 +553,9 @@
 										</a>
 										
 										<div class="dropdown">
-										  <a class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span class="hint" aria-label="Text align"><i class="la la-align-left"></i></span>
-										  </a>
+										  </button>
 
 										  <div id="justify-btn" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<a class="dropdown-item" href="#" data-value="Left"><i class="la la-lg la-align-left"></i> Align Left</a>
@@ -611,9 +633,9 @@
 									<a id="down-btn" href="" title="Move element down"><i class="la la-arrow-down"></i></a>
 									<a id="edit-code-btn" href="" title="Edit html code"><i class="icon-code-outline"></i></a>
 
-									<a id="save-reusable-btn" href="" title="Save as reusable" class="mx-2"><i class="icon-save-outline"></i></i></a>
+									<a id="save-reusable-btn" href="" title="Save as reusable" class="mx-2"><i class="icon-save-outline"></i></a>
 									<a id="clone-btn" href="" title="Clone element"><i class="icon-copy-outline"></i></a>
-									<a id="delete-btn" href="" title="Remove element"><i class="icon-trash-outline"></i></i></a>
+									<a id="delete-btn" href="" title="Remove element"><i class="icon-trash-outline"></i></a>
 								</div>
 								
 								<div class="resize">
@@ -646,10 +668,10 @@
 									<div class="header">							
 										<ul class="nav nav-tabs" id="box-elements-tabs" role="tablist">
 										  <li class="nav-item component-tab">
-											<a class="nav-link active" id="box-components-tab" data-bs-toggle="tab" href="#box-components" role="tab" aria-controls="components" aria-selected="true"><i class="la la-lg la-cube"></i> <div><small>Components</small></div></a>
+											<a class="nav-link px-3 active" id="box-components-tab" data-bs-toggle="tab" href="#box-components" role="tab" aria-controls="components" aria-selected="true"><i class="icon-cube-outline"></i><small>Components</small></a>
 										  </li>
 										  <li class="nav-item sections-tab">
-											<a class="nav-link" id="box-sections-tab" data-bs-toggle="tab" href="#box-blocks" role="tab" aria-controls="blocks" aria-selected="false"><i class="la la-lg la-image"></i> <div><small>Blocks</small></div></a>
+											<a class="nav-link px-3" id="box-sections-tab" data-bs-toggle="tab" href="#box-blocks" role="tab" aria-controls="blocks" aria-selected="false"><i class="icon-copy-outline"></i><small>Blocks</small></a>
 										  </li>
                           <!--
 										  <li class="nav-item component-properties-tab" style="display:none">
@@ -660,18 +682,18 @@
 										
 										<div class="section-box-actions">
 
-							<div id="close-section-btn" class="btn btn-light btn-sm float-end mt-1"><i class="la la-times la-lg"></i></div>
+									<div id="close-section-btn" class="btn btn-outline-secondary btn-sm mt-1 border-0 float-end"><i class="la la-times la-lg"></i></div>
 										
-							<div class="mt-2 me-3 float-end">
+										<div class="me-4 small mt-2 float-end">
 											
-								<div class="form-check d-inline-block me-1">
+											<div class="form-check d-inline-block small me-1">
 												  <input type="radio" id="add-section-insert-mode-after" value="after" checked="checked" name="add-section-insert-mode" class="form-check-input">
-								  <label class="form-check-label small" for="add-section-insert-mode-after">After</label>
+												 <label class="form-check-label" for="add-section-insert-mode-after">After</label>
 												</div>
 												
-								<div class="form-check d-inline-block">
+												<div class="form-check d-inline-block small">
 												  <input type="radio" id="add-section-insert-mode-inside" value="inside" name="add-section-insert-mode" class="form-check-input">
-								  <label class="form-check-label small" for="add-section-insert-mode-inside">Inside</label>
+													<label class="form-check-label" for="add-section-insert-mode-inside">Inside</label>
 												</div>
 										
 											</div>
@@ -693,7 +715,7 @@
 													  </button>
 												  </div>
 
-												<div>
+												<div class="overflow-y-auto mb-5">
 												  <div>
 													  
 													<ul class="components-list clearfix" data-type="addbox">
@@ -717,7 +739,7 @@
 													  </button>
 												  </div>
 
-												<div>
+												<div class="overflow-y-auto mb-5">
 												  <div>
 													  
 													<ul class="blocks-list clearfix"  data-type="addbox">
@@ -758,18 +780,18 @@
 				<div id="right-panel">
 					<div class="component-properties">
 						
-						<ul class="nav nav-tabs nav-fill" id="properties-tabs" role="tablist">
+						<ul class="nav nav-tabs nav-fill nav-underline" id="properties-tabs" role="tablist">
 							  <li class="nav-item content-tab">
 								<a class="nav-link active" data-bs-toggle="tab" href="#content-tab" role="tab" aria-controls="components" aria-selected="true">
-									 <i class="icon-albums-outline"></i> <div><span>Content</span></div></a>
+									 <i class="icon-albums-outline"></i> <span>Content</span></a>
 							  </li>
 							  <li class="nav-item style-tab">
 								<a class="nav-link" data-bs-toggle="tab" href="#style-tab" role="tab" aria-controls="blocks" aria-selected="false">
-									<i class="icon-color-fill-outline"></i></i> <div><span>Style</span></div></a>
+									<i class="icon-color-fill-outline"></i> <span>Style</span></a>
 							  </li>
 							  <li class="nav-item advanced-tab">
 								<a class="nav-link" data-bs-toggle="tab" href="#advanced-tab" role="tab" aria-controls="blocks" aria-selected="false">
-									<i class="icon-settings-outline"></i> <div><span>Advanced</span></div></a>
+									<i class="icon-settings-outline"></i> <span>Advanced</span></a>
 							  </li>
 							</ul>
 					
@@ -782,6 +804,16 @@
 								</div>
 								
 								 <div class="tab-pane show" id="style-tab" data-section="style" role="tabpanel" aria-labelledby="style-tab">
+									<div class="border-bottom pb-2 px-2">
+									  <div class="justify-content-end d-flex">
+										<select class="form-select w-50" data-vvveb-action="setState" data-vvveb-on="change">
+										  <option value=""> - State - </option>
+										  <option value="hover">hover</option>
+										  <option value="active">active</option>
+										  <option value="nth-of-type(2n)">nth-of-type(2n)</option>
+										</select>
+									  </div>
+									</div>
 								</div>
 								
 								 <div class="tab-pane show" id="advanced-tab" data-section="advanced"  role="tabpanel" aria-labelledby="advanced-tab">
@@ -817,7 +849,7 @@
 								</div>
 							
 							
-								  <button id="code-editor-btn" data-view="mobile" class="btn btn-sm btn-light btn-sm"  title="Code editor" data-vvveb-action="toggleEditor">
+								  <button id="code-editor-btn" class="btn btn-sm btn-light btn-sm"  title="Code editor" data-vvveb-action="toggleEditor">
 									  <i class="la la-code"></i> Code editor
 								  </button>
 								 
@@ -976,7 +1008,6 @@
 	<div class="input-html-list-select">
 		
 		<div class="current-element">
-		
 		</div>
 		
 		<div class="popup">
@@ -1001,7 +1032,6 @@
 			
 			<div class="elements">
 					{%=elements%}
-				</div>
 			</div>
 		</div>
 	</div>
@@ -1038,7 +1068,6 @@
 			
 			<div class="elements">
 					{%=elements%}
-				</div>
 			</div>
 		</div>
 	</div>
@@ -1057,27 +1086,49 @@
 
 <script id="vvveb-input-listinput" type="text/html">
 
-	<div class="row">
+	<div class="sections-container">
 
 		{% for ( var i = 0; i < options.length; i++ ) { %}
-		<div class="col-6">
-			<div class="input-group">
-				<input name="{%=key%}_{%=i%}" type="text" class="form-control" value="{%=options[i].text%}"/>
-				<div class="input-group-append">
-					<button class="input-group-text btn btn-sm btn-danger">
-						<i class="la la-trash la-lg"></i>
-					</button>
+		<div class="section-item" draggable="true">
+			<div class="controls">
+				<div class="handle"></div>
+				<div class="info">
+					<div class="name">{%=options[i].name%}
+						<div class="type">{%=options[i].type%}</div>
 				</div>
 			  </div>
-			  <br/>
+				<div class="buttons">
+					<a class="delete-btn" href="" title="Remove section"><i class="icon-trash-outline text-danger"></i></a>
+					<!-- 
+					<a class="up-btn" href="" title="Move element up"><i class="la la-arrow-up"></i></a>
+					<a class="down-btn" href="" title="Move element down"><i class="la la-arrow-down"></i></a>
+					<a class="properties-btn" href="" title="Properties"><i class="icon-settings-outline"></i></a>
+					-->
 		</div>
+			</div>
+
+
+			<input class="header_check" type="checkbox" id="section-components-{%=options[i].suffix%}">
+
+			<label for="section-components-{%=options[i].suffix%}"> 
+				<div class="header-arrow"></div>
+			</label>
+			
+			<div class="tree">
+				{%=options[i].name%}
+			</div>
+		</div>
+		
+
+
+
 		{% } %}
 
 
 		{% if (typeof hide_remove === 'undefined') { %}
-		<div class="col-12">
+		<div class="mt-3">
 		
-			<button class="btn btn-sm btn-outline-primary">
+			<button class="btn btn-sm btn-outline-primary btn-new">
 				<i class="la la-plus la-lg"></i> Add new
 			</button>
 			
@@ -1094,7 +1145,7 @@
 		<div class="col-6">
 		
 			<label>Extra small</label>
-			<select class="form-select" name="col">
+			<select class="form-select" name="col" autocomplete="off">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
@@ -1107,7 +1158,7 @@
 		
 		<div class="col-6">
 			<label>Small</label>
-			<select class="form-select" name="col-sm">
+			<select class="form-select" name="col-sm" autocomplete="off">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
@@ -1119,7 +1170,7 @@
 		
 		<div class="col-6">
 			<label>Medium</label>
-			<select class="form-select" name="col-md">
+			<select class="form-select" name="col-md" autocomplete="off">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
@@ -1131,7 +1182,7 @@
 		
 		<div class="col-6">
 			<label>Large</label>
-			<select class="form-select" name="col-lg">
+			<select class="form-select" name="col-lg" autocomplete="off">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
@@ -1144,11 +1195,11 @@
 		
 		<div class="col-6">
 			<label>Extra large </label>
-			<select class="form-select" name="col-xl">
+			<select class="form-select" name="col-xl" autocomplete="off">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_lg !== 'undefined') && col_lg == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_xl !== 'undefined') && col_xl == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>
@@ -1156,11 +1207,11 @@
 		
 		<div class="col-6">
 			<label>Extra extra large</label>
-			<select class="form-select" name="col-xxl">
+			<select class="form-select" name="col-xxl" autocomplete="off">
 				
 				<option value="">None</option>
 				{% for ( var i = 1; i <= 12; i++ ) { %}
-				<option value="{%=i%}" {% if ((typeof col_lg !== 'undefined') && col_lg == i) { %} selected {% } %}>{%=i%}</option>
+				<option value="{%=i%}" {% if ((typeof col_xxl !== 'undefined') && col_xxl == i) { %} selected {% } %}>{%=i%}</option>
 				{% } %}
 				
 			</select>
@@ -1231,7 +1282,7 @@
 	<div>
 		<img id="thumb-{%=key%}" class="img-thumbnail p-0" data-target-input="#input-{%=key%}" data-target-thumb="#thumb-{%=key%}" style="cursor:pointer" src="" width="225" height="225">
 		<input name="{%=key%}" type="text" class="form-control mt-1" id="input-{%=key%}"/>
-		<button name="button" class="btn btn-primary btn-sm btn-icon mt-2" data-target-input="#input-{%=key%}" data-target-thumb="#thumb-{%=key%}"><i class="la la-image la-lg"></i>&ensp;<span>Set image</span></button>
+		<button name="button" class="btn btn-primary btn-sm btn-icon mt-2 px-2" data-target-input="#input-{%=key%}" data-target-thumb="#thumb-{%=key%}"><i class="la la-image la-lg"></i><span>Set image</span></button>
 	</div>
 	
 </script>
@@ -1241,7 +1292,7 @@
 	<div>
 		<video id="thumb-v{%=key%}" class="img-thumbnail p-0" data-target-input="#input-v{%=key%}" data-target-thumb="#thumb-v{%=key%}" style="cursor:pointer" src="" width="225" height="225" playsinline loop muted controls></video>
 		<input name="v{%=key%}" type="text" class="form-control mt-1" id="input-v{%=key%}"/>
-		<button name="button" class="btn btn-primary btn-sm btn-icon mt-2" data-target-input="#vinput-v{%=key%}" data-target-thumb="#thumb-v{%=key%}"><i class="la la-video la-lg"></i>&ensp;<span>Set video</span></button>
+		<button name="button" class="btn btn-primary btn-sm btn-icon mt-2" data-target-input="#vinput-v{%=key%}" data-target-thumb="#thumb-v{%=key%}"><i class="la la-video la-lg"></i><span>Set video</span></button>
 	</div>
 	
 </script>
@@ -1249,7 +1300,13 @@
 <script id="vvveb-input-colorinput" type="text/html">
 	
 	<div>
-		<input name="{%=key%}" type="color" {% if (typeof value !== 'undefined' && value != false) { %} value="{%=value%}" {% } %}  pattern="#[a-f0-9]{6}" class="form-control form-control-color"/>
+		<input name="{%=key%}" {%  if (typeof palette !== 'undefined') { %} list="{%=key%}-color-palette" {% } %} type="color" {% if (typeof value !== 'undefined' && value != false) { %} value="{%=value%}" {% } %}  pattern="#[a-f0-9]{6}" class="form-control form-control-color"/>
+		{%  if (typeof palette !== 'undefined') { %}
+		<datalist id="{%=key%}-color-palette">
+			{% for (const color in palette) { %}
+				<option value="{%=color%}">{%=palette[color]%}</option>
+			{% } %}		
+		{% } %}
 	</div>
 	
 </script>
@@ -1292,7 +1349,6 @@
 			  {% if (typeof max !== 'undefined' && max != false) { %}max="{%=max%}"{% } %} 
 			  {% if (typeof step !== 'undefined' && step != false) { %}step="{%=step%}"{% } %} 
 		class="form-control"/>
-		 <div class="input-group-append">
 		<select class="form-select small-arrow" name="unit">
 			<option value="em">em</option>
 			<option value="rem">rem</option>
@@ -1307,8 +1363,8 @@
 			<option value="in">in</option>
 			<option value="pt">pt</option>
 			<option value="auto">auto</option>
+			<option value="">-</option>
 		</select>
-		</div>
 	</div>
 	
 </script>
@@ -1327,8 +1383,9 @@
 			<span>{%=title%}</span>
 			<div class="file-actions">
 				<button href="#" class="delete btn btn-outline-danger" title="Delete"><i class="la la-trash"></i></button>
+				<a href="{%=url%}" target="_blank" class="view btn btn-outline-primary" title="View page"><i class="la la la-external-link-alt"></i></a>
 				<button href="#" class="rename btn btn-outline-primary" title="Rename"><i class="la la-pen"></i></button>
-				<button href="#" class="duplicate btn btn-outline-primary" title="Clone"><i class="icon-copy-outline"></i></button>
+				<button href="#" class="duplicate btn btn-outline-primary" title="Duplicate"><i class="icon-copy-outline"></i></button>
 			</div>
 		</label> <input type="checkbox" id="{%=name%}" />
 		<!-- <ol></ol> -->
@@ -1346,11 +1403,12 @@
 </script>
 
 <script id="vvveb-input-sectioninput" type="text/html">
-
-		<label class="header" data-header="{%=key%}" for="header_{%=key%}" {% if (typeof group !== 'undefined' && group != null) { %}data-group="{%=group%}" {% } %}><span>{%=header%}</span> <div class="header-arrow"></div></label> 
-		<input class="header_check" type="checkbox" {% if (typeof expanded !== 'undefined' && expanded == false) { %} {% } else { %}checked="true"{% } %} id="header_{%=key%}"> 
+	<div>
+		{% var namespace = '-' + Math.floor(Math.random() * 1000); %}
+		<label class="header" data-header="{%=key%}" for="header_{%=key%}{%=namespace%}" {% if (typeof group !== 'undefined' && group != null) { %}data-group="{%=group%}" {% } %}><span>{%=header%}</span> <div class="header-arrow"></div></label> 
+		<input class="header_check" type="checkbox" {% if (typeof expanded !== 'undefined' && expanded == false) { %} {% } else { %}checked="true"{% } %} id="header_{%=key%}{%=namespace%}"> 
 		<div class="section row" data-section="{%=key%}" {% if (typeof group !== 'undefined' && group != null) { %}data-group="{%=group%}" {% } %}></div>		
-	
+	</div>
 </script>
 
 
@@ -1393,7 +1451,7 @@
 	<div>
 		<div class="alert alert-dismissible fade show alert-{%=type%}" role="alert">		  
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>		  
-			<h6><b>{%=title%}</b></h6> 
+			<strong class="d-block mb-1">{%=title%}</strong> 
 			
 			{%=text%}
 		</div>
@@ -1429,7 +1487,8 @@
 		</label>
 		
 		<div class="tree">
-			<ol >
+			<ol>
+				<!--
 				<li data-component="Products" class="file">							
 					<label for="idNaN" style="background-image:url(/js/vvvebjs/icons/products.svg)"><span>Products</span></label>							
 					<input type="checkbox" id="idNaN">
@@ -1438,6 +1497,7 @@
 					<label for="idNaN" style="background-image:url(/js/vvvebjs/icons/posts.svg)"><span>Posts</span></label>							
 					<input type="checkbox" id="idNaN">
 				</li>
+				-->
 			</ol>
 		</div>
 	</div>
@@ -1447,16 +1507,40 @@
 
 <!--// end templates -->
 
+
+        <div id="tree-list">
+          <div class="header">
+            <div>Navigator</div>
+            <button class="btn btn-sm" data-vvveb-action="toggleTreeList" aria-pressed="true">
+              <i class="icon-close"></i>
+            </button>
+          </div>
+          <div class="tree">
+            <ol>
+              <!--
+			<li data-component="Products" class="file">							
+				<label for="idNaN" style="background-image:url(/js/vvvebjs/icons/products.svg)"><span>Products</span></label>							
+				<input type="checkbox" id="idNaN">
+			</li>
+			<li data-component="Posts" class="file">							
+				<label for="idNaN" style="background-image:url(/js/vvvebjs/icons/posts.svg)"><span>Posts</span></label>							
+				<input type="checkbox" id="idNaN">
+			</li>
+			-->
+            </ol>
+          </div>
+        </div>
+
 <!-- code editor modal -->
 <div class="modal modal-full fade" id="codeEditorModal" tabindex="-1" aria-labelledby="codeEditorModal" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
     <div class="modal-content">
 	  <input type="hidden" name="file" value="">  	
 	
-      <div class="modal-header">
+      <div class="modal-header justify-content-between">
         <span class="modal-title"></span>
 		<div class="float-end">
-			<button type="button" class="btn btn-secondary btn-icon" data-bs-dismiss="modal"><i class="la la-times"></i>Close</button>
+			<button type="button" class="btn btn-light border btn-icon" data-bs-dismiss="modal"><i class="la la-times"></i>Close</button>
 			
 			<button class="btn btn-primary btn-icon save-btn" title="Save changes">
 				<span class="loading d-none">
@@ -1532,8 +1616,8 @@
 		
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title text-primary fw-normal"><i class="la la-lg la-file"></i> New page</h6>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        <span class="modal-title text-primary fw-normal"><i class="la la-lg la-file"></i> New page</span>
+        <button type="button" class="btn-close p-0 me-1" data-bs-dismiss="modal" aria-label="Close">
           <!-- span aria-hidden="true"><small><i class="la la-times"></i></small></span -->
         </button>
       </div>
@@ -1598,8 +1682,8 @@
       </div>
 
       <div class="modal-footer">
-        <button class="btn btn-secondary btn-lg" type="reset" data-bs-dismiss="modal"><i class="la la-times"></i> Cancel</button>
-		<button class="btn btn-primary btn-lg" type="submit"><i class="la la-check"></i> Create page</button>
+        <button class="btn btn-secondary btn-icon" type="reset" data-bs-dismiss="modal"><i class="la la-times"></i> Cancel</button>
+		<button class="btn btn-primary btn-icon" type="submit"><i class="la la-check"></i> Create page</button>
       </div>
     </div>
     
@@ -1622,16 +1706,14 @@
 				  <div>Template backup was saved!</div>
 				  <div>Template was saved!</div>
 			  </div>
+			  <!--
 			  <div><a class="btn btn-success  btn-icon btn-sm w-100 mt-2" href="">View page</a></div>
+			  -->
 			</div>
 		</div>
 	</div>
 </div>
 	
-<!-- jquery-->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.hotkeys.js"></script>
-
 <!-- bootstrap-->
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -1651,7 +1733,9 @@ window.mediaPath = '../../media';
 Vvveb.themeBaseUrl = 'demo/landing/';
 </script>
 <script src="libs/media/media.js"></script>	
+<!--
 <script src="libs/media/openverse.js"></script>
+-->
 <script src="libs/builder/plugin-media.js"></script>	
 
 <!-- bootstrap colorpicker //uncomment bellow scripts to enable -->
@@ -1665,15 +1749,18 @@ Vvveb.themeBaseUrl = 'demo/landing/';
 <!-- script src="libs/builder/components-server.js"></script -->	
 <script src="libs/builder/plugin-google-fonts.js"></script>	
 <script src="libs/builder/components-common.js"></script>	
-<script src="libs/builder/components-html.js"></script>	
 <script src="libs/builder/plugin-aos.js"></script>
+<script src="libs/builder/components-html.js"></script>	
 <script src="libs/builder/components-elements.js"></script>	
 <script src="libs/builder/section.js"></script>	
 <script src="libs/builder/components-bootstrap5.js"></script>	
 <script src="libs/builder/components-widgets.js"></script>	
+<script src="libs/builder/oembed.js"></script>
+<script src="libs/builder/components-embeds.js"></script>
+
 
 <!-- sections-->
-<!-- <script src="demo/landing/sections/sections.js"></script> -->
+<script src="demo/landing/sections/sections.js"></script>
 <script src="libs/builder/sections-bootstrap4.js"></script>
 
 <!-- blocks-->
@@ -1686,6 +1773,7 @@ Vvveb.themeBaseUrl = 'demo/landing/';
 <link href="libs/codemirror/theme/material.css" rel="stylesheet"/>
 <script src="libs/codemirror/lib/codemirror.js"></script>
 <script src="libs/codemirror/lib/xml.js"></script>
+<script src="libs/codemirror/lib/css.js"></script>
 <script src="libs/codemirror/lib/formatting.js"></script>
 <script src="libs/builder/plugin-codemirror.js"></script>	
 
@@ -1712,67 +1800,466 @@ Unzip the latest ckeditor release zip from https://github.com/ckeditor/ckeditor4
 <script src="libs/jszip/jszip.min.js"></script>
 <script src="libs/jszip/filesaver.min.js"></script>
 <script src="libs/builder/plugin-jszip.js"></script>
+<script src="libs/builder/plugin-ai-assistant.js"></script>
 
 
 <!-- autocomplete plugin used by autocomplete input-->
+<!--
 <script src="libs/autocomplete/jquery.autocomplete.js"></script>	
-
+-->
 <script>
 let renameUrl = 'save.php?action=rename';
 let deleteUrl = 'save.php?action=delete';	
 let saveReusableUrl = 'save.php?action=saveReusable';	
+let oEmbedProxyUrl = 'save.php?action=oembedProxy';
+let chatgptOptions = {"key":"","model":"gpt-3.5-turbo-instruct","temperature":0,"max_tokens":300};
 
-let pages = 
-	[
-		{name:"narrow-jumbotron", title:"Jumbotron",  url: "demo/narrow-jumbotron/index.html", file: "demo/narrow-jumbotron/index.html", assets: ['demo/narrow-jumbotron/narrow-jumbotron.css']},
-		{name:"landing-page", title:"Landing page",  url: "demo/landing/index.html", file: "demo/landing/index.html", assets: ['demo/landing/css/style.css']},
-		{name:"album", title:"Album",  url: "demo/album/index.html", file: "demo/album/index.html", folder:"content", assets: ['demo/album/album.css']},
-		{name:"blog", title:"Blog",  url: "demo/blog/index.html", file: "demo/blog/index.html", folder:"content", assets: ['demo/blog/blog.css']},
-		{name:"carousel", title:"Carousel",  url: "demo/carousel/index.html",  file: "demo/carousel/index.html", folder:"content", assets: ['demo/carousel/carousel.css']},
-		{name:"offcanvas", title:"Offcanvas",  url: "demo/offcanvas/index.html", file: "demo/offcanvas/index.html", folder:"content", assets: ['demo/offcanvas/offcanvas.css','demo/offcanvas/offcanvas.js']},
-		{name:"pricing", title:"Pricing",  url: "demo/pricing/index.html", file: "demo/pricing/index.html", folder:"ecommerce", assets: ['demo/pricing/pricing.css']},
-		{name:"product", title:"Product",  url: "demo/product/index.html", file: "demo/product/index.html", folder:"ecommerce", assets: ['demo/product/product.css']},
-		//uncomment php code below and rename file to .php extension to load saved html files in the editor or use editor.php
-		/*
-		<?php 
-		   $htmlFiles = glob('{my-pages/*.html,demo/*\/*.html, demo/*.html}',  GLOB_BRACE);
-		   foreach ($htmlFiles as $file) { 
-			   if (in_array($file, array('new-page-blank-template.html', 'editor.html'))) continue;//skip template files
-			   $pathInfo = pathinfo($file);
-			   $filename = $pathInfo['filename'];
-			   $folder = preg_replace('@/.+?$@', '', $pathInfo['dirname']);
-			   $subfolder = preg_replace('@^.+?/@', '', $pathInfo['dirname']);
-			   if ($filename == 'index' && $subfolder) {
-				   $filename = $subfolder;
-			   }
-			   $url = $pathInfo['dirname'] . '/' . $pathInfo['basename'];
-		?>
-		{name:"<?php echo ucfirst($filename);?>", file:"<?php echo ucfirst($filename);?>", title:"<?php echo ucfirst($filename);?>",  url: "<?php echo $url;?>", folder:"<?php echo $folder?>"},
-		<?php } ?>
-		*/
-	];
+let defaultPages = {
+	//uncomment php code below and rename file to .php extension to load saved html files in the editor or use editor.php
+	/*
+	<?php 
+	   $htmlFiles = glob('{my-pages/*.html,demo/*\/*.html, demo/*.html}',  GLOB_BRACE);
+	   foreach ($htmlFiles as $file) { 
+		   if (in_array($file, array('new-page-blank-template.html', 'editor.html'))) continue;//skip template files
+		   $pathInfo = pathinfo($file);
+		   $filename = $pathInfo['filename'];
+		   $folder = preg_replace('@/.+?$@', '', $pathInfo['dirname']);
+		   $subfolder = preg_replace('@^.+?/@', '', $pathInfo['dirname']);
+		   if ($filename == 'index' && $subfolder) {
+			   $filename = $subfolder;
+		   }
+		   $url = $pathInfo['dirname'] . '/' . $pathInfo['basename'];
+	?>
+	"<?php echo ucfirst($filename);?>":{name:"<?php echo ucfirst($filename);?>", file:"<?php echo ucfirst($filename);?>", title:"<?php echo ucfirst($filename);?>",  url: "<?php echo $url;?>", folder:"<?php echo $folder?>"},
+	<?php } ?>
+	*/
+  "index": {
+    name: "index",
+    filename: "index.html",
+    file: "demo/landing/index.html",
+    url: "demo/landing/index.html",
+    title: "Home page",
+    folder: null,
+    description: "Website homepage"
+  },
+  "contact": {
+    name: "contact",
+    filename: "contact.html",
+    file: "demo/landing/contact.html",
+    url: "demo/landing/contact.html",
+    title: "Contact us page",
+    folder: null,
+    description: "Contact us page"
+  },
+  "blank": {
+    name: "blank",
+    filename: "blank.html",
+    file: "demo/landing/blank.html",
+    url: "demo/landing/blank.html",
+    title: "Blank page",
+    folder: null,
+    description: "Template page used for new pages"
+  },
+  "error404": {
+    name: "error404",
+    filename: "error404.html",
+    file: "demo/landing/error404.html",
+    url: "demo/landing/error404.html",
+    title: "Page not found",
+    folder: null,
+    description: "Shows when a page is not available"
+  },
+  "error500": {
+    name: "error500",
+    filename: "error500.html",
+    file: "demo/landing/error500.html",
+    url: "demo/landing/error500.html",
+    title: "Server error",
+    folder: null,
+    description: "Site error display page"
+  },
+  "index-blog": {
+    name: "index-blog",
+    filename: "index-blog.html",
+    file: "demo/landing/index-blog.html",
+    url: "demo/landing/index-blog.html",
+    title: "Index blog",
+    folder: null,
+    description: ""
+  },
+  "index-landing": {
+    name: "index-landing",
+    filename: "index-landing.html",
+    file: "demo/landing/index-landing.html",
+    url: "demo/landing/index-landing.html",
+    title: "Index landing",
+    folder: null,
+    description: ""
+  },
+  "index.coming-soon": {
+    name: "index.coming-soon",
+    filename: "index.coming-soon.html",
+    file: "demo/landing/index.coming-soon.html",
+    url: "demo/landing/index.coming-soon.html",
+    title: "Coming soon",
+    folder: null,
+    description: "Coming soon message page"
+  },
+  "index.maintenance": {
+    name: "index.maintenance",
+    filename: "index.maintenance.html",
+    file: "demo/landing/index.maintenance.html",
+    url: "demo/landing/index.maintenance.html",
+    title: "Under maintenance",
+    folder: null,
+    description: "Website under maintenance message page"
+  },
+  "email-new": {
+    name: "email-new",
+    filename: "new.html",
+    file: "demo/landing/email/order/new.html",
+    url: "demo/landing/email/order/new.html",
+    title: "New",
+    folder: "email",
+    description: ""
+  },
+  "email-new.txt": {
+    name: "email-new.txt",
+    filename: "new.txt.html",
+    file: "demo/landing/email/order/new.txt.html",
+    url: "demo/landing/email/order/new.txt.html",
+    title: "New txt",
+    folder: "email",
+    description: ""
+  },
+  "email-reset": {
+    name: "email-reset",
+    filename: "reset.html",
+    file: "demo/landing/email/user/reset.html",
+    url: "demo/landing/email/user/reset.html",
+    title: "Reset",
+    folder: "email",
+    description: ""
+  },
+  "email-reset.txt": {
+    name: "email-reset.txt",
+    filename: "reset.txt.html",
+    file: "demo/landing/email/user/reset.txt.html",
+    url: "demo/landing/email/user/reset.txt.html",
+    title: "Reset txt",
+    folder: "email",
+    description: ""
+  },
+  "email-signup": {
+    name: "email-signup",
+    filename: "signup.html",
+    file: "demo/landing/email/user/signup.html",
+    url: "demo/landing/email/user/signup.html",
+    title: "Signup",
+    folder: "email",
+    description: ""
+  },
+  "email-signup.txt": {
+    name: "email-signup.txt",
+    filename: "signup.txt.html",
+    file: "demo/landing/email/user/signup.txt.html",
+    url: "demo/landing/email/user/signup.txt.html",
+    title: "Signup txt",
+    folder: "email",
+    description: ""
+  },
+  "user-edit": {
+    name: "user-edit",
+    filename: "edit.html",
+    file: "demo/landing/user/edit.html",
+    url: "demo/landing/user/edit.html",
+    title: "Edit",
+    folder: "user",
+    description: ""
+  },
+  "user-reset": {
+    name: "user-reset",
+    filename: "reset.html",
+    file: "demo/landing/user/reset.html",
+    url: "demo/landing/user/reset.html",
+    title: "Reset",
+    folder: "user",
+    description: ""
+  },
+  "cart-cart": {
+    name: "cart-cart",
+    filename: "cart.html",
+    file: "demo/landing/cart/cart.html",
+    url: "demo/landing/cart/cart.html",
+    title: "Cart",
+    folder: "cart",
+    description: ""
+  },
+  "checkout-checkout": {
+    name: "checkout-checkout",
+    filename: "checkout.html",
+    file: "demo/landing/checkout/checkout.html",
+    url: "demo/landing/checkout/checkout.html",
+    title: "Checkout",
+    folder: "checkout",
+    description: ""
+  },
+  "checkout-confirm": {
+    name: "checkout-confirm",
+    filename: "confirm.html",
+    file: "demo/landing/checkout/confirm.html",
+    url: "demo/landing/checkout/confirm.html",
+    title: "Confirm",
+    folder: "checkout",
+    description: ""
+  },
+  "checkout-order": {
+    name: "checkout-order",
+    filename: "order.html",
+    file: "demo/landing/checkout/order.html",
+    url: "demo/landing/checkout/order.html",
+    title: "Order",
+    folder: "checkout",
+    description: ""
+  },
+  "content-archive": {
+    name: "content-archive",
+    filename: "archive.html",
+    file: "demo/landing/content/archive.html",
+    url: "demo/landing/content/archive.html",
+    title: "Archive",
+    folder: "content",
+    description: ""
+  },
+  "content-category": {
+    name: "content-category",
+    filename: "category.html",
+    file: "demo/landing/content/category.html",
+    url: "demo/landing/content/category.html",
+    title: "Category",
+    folder: "content",
+    description: ""
+  },
+  "content-index": {
+    name: "content-index",
+    filename: "index.html",
+    file: "demo/landing/content/index.html",
+    url: "demo/landing/content/index.html",
+    title: "Blog homepage",
+    folder: "content",
+    description: "Blog page with latest posts"
+  },
+  "content-page": {
+    name: "content-page",
+    filename: "page.html",
+    file: "demo/landing/content/page.html",
+    url: "demo/landing/content/page.html",
+    title: "Page",
+    folder: "content",
+    description: ""
+  },
+  "content-post-image-header": {
+    name: "content-post-image-header",
+    filename: "post-image-header.html",
+    file: "demo/landing/content/post-image-header.html",
+    url: "demo/landing/content/post-image-header.html",
+    title: "Post image header",
+    folder: "content",
+    description: ""
+  },
+  "content-post-image-hero": {
+    name: "content-post-image-hero",
+    filename: "post-image-hero.html",
+    file: "demo/landing/content/post-image-hero.html",
+    url: "demo/landing/content/post-image-hero.html",
+    title: "Post image hero",
+    folder: "content",
+    description: ""
+  },
+  "content-post": {
+    name: "content-post",
+    filename: "post.html",
+    file: "demo/landing/content/post.html",
+    url: "demo/landing/content/post.html",
+    title: "Blog post",
+    folder: "content",
+    description: "Blog post",
+    "editor": {
+      "template": "post"
+    }
+  },
+  "content-tag": {
+    name: "content-tag",
+    filename: "tag.html",
+    file: "demo/landing/content/tag.html",
+    url: "demo/landing/content/tag.html",
+    title: "Tag",
+    folder: "content",
+    description: ""
+  },
+  "content-user": {
+    name: "content-user",
+    filename: "user.html",
+    file: "demo/landing/content/user.html",
+    url: "demo/landing/content/user.html",
+    title: "User",
+    folder: "content",
+    description: ""
+  },
+  "product-category": {
+    name: "product-category",
+    filename: "category.html",
+    file: "demo/landing/product/category.html",
+    url: "demo/landing/product/category.html",
+    title: "Category",
+    folder: "product",
+    description: ""
+  },
+  "product-index": {
+    name: "product-index",
+    filename: "index.html",
+    file: "demo/landing/product/index.html",
+    url: "demo/landing/product/index.html",
+    title: "Shop page",
+    folder: "product",
+    description: "Shop homepage"
+  },
+  "product-manufacturer": {
+    name: "product-manufacturer",
+    filename: "manufacturer.html",
+    file: "demo/landing/product/manufacturer.html",
+    url: "demo/landing/product/manufacturer.html",
+    title: "Manufacturer",
+    folder: "product",
+    description: ""
+  },
+  "product-product": {
+    name: "product-product",
+    filename: "product.html",
+    file: "demo/landing/product/product.html",
+    url: "demo/landing/product/product.html",
+    title: "Product",
+    folder: "product",
+    description: ""
+  },
+  "product-vendor": {
+    name: "product-vendor",
+    filename: "vendor.html",
+    file: "demo/landing/product/vendor.html",
+    url: "demo/landing/product/vendor.html",
+    title: "Vendor",
+    folder: "product",
+    description: ""
+  },
+  "search-index": {
+    name: "search-index",
+    filename: "index.html",
+    file: "demo/landing/search/index.html",
+    url: "demo/landing/search/index.html",
+    title: "Search page",
+    folder: "search",
+    description: "Search page"
+  },
+  "user-address": {
+    name: "user-address",
+    filename: "address.html",
+    file: "demo/landing/user/address.html",
+    url: "demo/landing/user/address.html",
+    title: "Address",
+    folder: "user",
+    description: ""
+  },
+  "user-comments": {
+    name: "user-comments",
+    filename: "comments.html",
+    file: "demo/landing/user/comments.html",
+    url: "demo/landing/user/comments.html",
+    title: "Comments",
+    folder: "user",
+    description: ""
+  },
+  "user-downloads": {
+    name: "user-downloads",
+    filename: "downloads.html",
+    file: "demo/landing/user/downloads.html",
+    url: "demo/landing/user/downloads.html",
+    title: "Downloads",
+    folder: "user",
+    description: ""
+  },
+  "user-index": {
+    name: "user-index",
+    filename: "index.html",
+    file: "demo/landing/user/index.html",
+    url: "demo/landing/user/index.html",
+    title: "Dashboard",
+    folder: "user",
+    description: "User dashboard"
+  },
+  "user-login": {
+    name: "user-login",
+    filename: "login.html",
+    file: "demo/landing/user/login.html",
+    url: "demo/landing/user/login.html",
+    title: "Login",
+    folder: "user",
+    description: ""
+  },
+  "user-orders": {
+    name: "user-orders",
+    filename: "orders.html",
+    file: "demo/landing/user/orders.html",
+    url: "demo/landing/user/orders.html",
+    title: "Orders",
+    folder: "user",
+    description: ""
+  },
+  "user-profile": {
+    name: "user-profile",
+    filename: "profile.html",
+    file: "demo/landing/user/profile.html",
+    url: "demo/landing/user/profile.html",
+    title: "Profile",
+    folder: "user",
+    description: ""
+  },
+  "user-signup": {
+    name: "user-signup",
+    filename: "signup.html",
+    file: "demo/landing/user/signup.html",
+    url: "demo/landing/user/signup.html",
+    title: "Signup",
+    folder: "user",
+    description: ""
+  },
+ "narrow-jumbotron":{name:"narrow-jumbotron", title:"Jumbotron",  url: "demo/narrow-jumbotron/index.html", file: "demo/narrow-jumbotron/index.html"},
+ "album":{name:"album", title:"Album",  url: "demo/album/index.html", file: "demo/album/index.html", folder:"content"},
+ "blog":{name:"blog", title:"Blog",  url: "demo/blog/index.html", file: "demo/blog/index.html", folder:"content"},
+ "carousel":{name:"carousel", title:"Carousel",  url: "demo/carousel/index.html",  file: "demo/carousel/index.html", folder:"content"},
+ "offcanvas":{name:"offcanvas", title:"Offcanvas",  url: "demo/offcanvas/index.html", file: "demo/offcanvas/index.html", folder:"content"},
+ "pricing":{name:"pricing", title:"Pricing",  url: "demo/pricing/index.html", file: "demo/pricing/index.html", folder:"ecommerce"},
+ "product":{name:"product", title:"Product",  url: "demo/product/index.html", file: "demo/product/index.html", folder:"ecommerce"}  
+};	
 	
-$(function() {
 
-	let firstPage = Object.keys(pages)[0];
-	Vvveb.Builder.init(pages[firstPage]["url"], function() {
-		//load code after page is loaded here
-	});
+let pages = defaultPages;
 
-	Vvveb.Gui.init();
-	Vvveb.FileManager.init();
-	Vvveb.SectionList.init();
-	Vvveb.Breadcrumb.init();
-	
-	Vvveb.FileManager.addPages(pages);
-	Vvveb.FileManager.loadPage(pages[firstPage]["name"]);
-	Vvveb.Breadcrumb.init();
-
-	//if url has #no-right-panel set one panel demo
-	if (window.location.hash.indexOf("no-right-panel") != -1) {
-		Vvveb.Gui.toggleRightColumn();
-	}
+let firstPage = Object.keys(pages)[0];
+Vvveb.Builder.init(pages[firstPage]["url"], function() {
+	//load code after page is loaded here
 });
+
+Vvveb.Gui.init();
+Vvveb.FileManager.init();
+Vvveb.SectionList.init();
+Vvveb.TreeList.init();
+Vvveb.Breadcrumb.init();
+Vvveb.CssEditor.init();
+
+Vvveb.FileManager.addPages(pages);
+Vvveb.FileManager.loadPage(pages[firstPage]["name"]);
+Vvveb.Gui.toggleRightColumn(false);
+Vvveb.Breadcrumb.init();
 </script>
 </body>
 </html>

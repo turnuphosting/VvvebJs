@@ -3,9 +3,9 @@
 <p align="center">
   <img src="https://www.vvveb.com/admin/themes/default/img/biglogo.png" alt="Vvveb">
   <br><br>
-  <strong>Drag and drop website builder javascript library.</strong>
+  <strong>Drag and drop page builder javascript library.</strong>
   <br>
-  <span>Built with jQuery and Bootstrap 5.</span>
+  <span>Built with Vanilla Js with no dependencies or build tools and Bootstrap 5</span>
 </p>
 <p align="center">
   <a href="https://www.vvveb.com">Website</a> |
@@ -17,7 +17,7 @@
 
 ## [Live Demo](https://www.vvveb.com/vvvebjs/editor.html)
 
-For a full featured open source CMS using VvvebJs check [Vvveb CMS](https://www.vvveb.com)
+For a full featured Open Source CMS using VvvebJs page builder check [Vvveb CMS](https://github.com/givanz/Vvveb)
 
 Using [Vvveb landing page template](https://github.com/givanz/landing) for demo page and Bootstrap 5 sections and blocks.
 
@@ -52,39 +52,125 @@ By default the editor comes with Bootstrap 5 and Widgets components and can be e
 
 ## Install
 
+* Clone the repository 
+```bash
+#git 2.13+ 
+git clone --recurse-submodules https://github.com/givanz/VvvebJs
+
+# older git versions 
+git clone --recursive https://github.com/givanz/VvvebJs
+```
+
+* Pull changes 
+```bash
+git pull --recurse-submodules
+```
+
+## Usage
+
 Clone the repository or download a release then open `editor.html`
 
-Because of browser iframe security you need to use a webserver such as xampp and open `http://localhost/editor.html`
+Because of browser iframe security you need to use a webserver such as apache/xampp and open `http://localhost/editor.html`
 
 To use the image upload or page save feature you need to have php installed.
 
-#### Scss
 
-To compile scss to css first install gulp 
+## Docker
+
+### Local development
+
+From VvvebJs folder run
+
+```bash
+docker-compose up
+```
+
+### Image 
+
+Or run image 
+
+```bash
+docker run -p 8080:80 vvveb/vvvebjs
+```
+
+Open http://localhost:8080/editor.php or http://localhost:8080/editor.html
+
+## Save page
+
+Save page function needs either php or node
+
+### PHP
+
+If you use docker, xampp or a shared hosting account php should work without any change.
+
+Saving is done using [save.php](save.php)
+
+### Node
+
+For node go to VvvebJs folder and run
+
+```bash
+npm install express
+node save.js
+```
+
+Open http://localhost:8080/editor.html
+
+Saving is done using [save.js](save.js)
+
+
+## [Landing template](https://github.com/givanz/landing)
+
+To make changes to template files or sections run the following commands from `demo/landing` folder
+
+### Install gulp
 
 ```bash
 npm i
 ```
 
-Then you can run 
+### Generate html files
+
+Template html partials are located in `demo/landing/src` folder.
 
 ```bash
 npm run gulp
 ```
 
-or use watch to compile on file change.
+### Watch for changes for development
 
 ```bash
 npm run gulp watch
 ```
 
+### Generate sections list for page builder
+
+Sections html files are located in `demo/landing/src/sections` folder grouped in folders with the section group name.
+
+```bash
+npm run gulp sections
+```
+
+### Generate blocks list
+
+Blocks html files are located in `demo/landing/src/blocks` folder grouped in folders with the blocks group name.
+
+```bash
+npm run gulp blocks
+```
+
+### Generate screenshots for sections
+
+```bash
+npm run gulp screenshots
+```
+
 ## Usage
 
-```js
-<!-- jquery-->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.hotkeys.js"></script>
+### Initialize example
 
+
+```js
 <!-- bootstrap-->
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -110,62 +196,54 @@ let pages = [
   {name:"landing-page", title:"Landing page", url: "demo/landing/index.html", file: "demo/landing/index.html"},
 ];
 	
-$(function() {
 
-	let firstPage = Object.keys(pages)[0];
-	Vvveb.Builder.init(pages[firstPage]["url"], function() {
-		//load code after page is loaded here
-	});
-
-	Vvveb.Gui.init();
-	Vvveb.FileManager.init();
-	Vvveb.SectionList.init();
-	Vvveb.Breadcrumb.init();
-	
-	Vvveb.FileManager.addPages(pages);
-	Vvveb.FileManager.loadPage(pages[firstPage]["name"]);
-	Vvveb.Breadcrumb.init();
-
-	//if url has #no-right-panel set one panel demo
-	if (window.location.hash.indexOf("no-right-panel") != -1) {
-		Vvveb.Gui.toggleRightColumn();
-	}
+let firstPage = Object.keys(pages)[0];
+Vvveb.Builder.init(pages[firstPage]["url"], function() {
+	//load code after page is loaded here
 });
+
+Vvveb.Gui.init();
+Vvveb.FileManager.init();
+Vvveb.SectionList.init();
+Vvveb.Breadcrumb.init();
+
+Vvveb.FileManager.addPages(pages);
+Vvveb.FileManager.loadPage(pages[firstPage]["name"]);
+Vvveb.Gui.toggleRightColumn(false);
+Vvveb.Breadcrumb.init();
+
 <script>
 ```
 
-For editor html and components/input javascript templates edit `editor.html`
+For editor html and components/input javascript templates edit [editor.html](editor.html)
 
-For css changes edit `scss/editor.scss` and `scss/_builder.scss`
+For css changes edit [scss/editor.scss](scss/editor.scss) and [scss/_builder.scss](scss/_builder.scss)
+
+
+### Scss
+
+To compile scss to css first install gulp 
+
+```bash
+npm i
+```
+
+Then you can run 
+
+```bash
+npm run gulp
+```
+
+or use watch to compile on file change.
+
+```bash
+npm run gulp watch
+```
+
 
 ## Documentation
 
 For documentation check the [wiki](https://github.com/givanz/VvvebJs/wiki)
-
-## Save page
-
-Save page function needs either php or node
-
-### PHP
-
-If you use xampp or a shared hosting account php should work without any change.
-
-Saving is done using [save.php](save.php)
-
-### Node
-
-For node go to VvvebJs folder and run
-
-```bash
-npm install express
-node save.js
-```
-
-Open http://localhost:8080/editor.html
-
-Saving is done using [save.js](save.js)
-
-## Usage
 
 ## Support
 
